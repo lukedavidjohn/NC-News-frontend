@@ -1,0 +1,5 @@
+.Nav {
+  grid-area: Nav;
+  border: solid blue 2px;
+  justify-content: space-evenly;
+}

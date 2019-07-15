@@ -1,0 +1,11 @@
+.App {
+  display: grid;
+  grid-template-rows: 2fr 1fr 16fr 1fr;
+  grid-template-areas:
+    "Heading"
+    "Nav"
+    "Main"
+    "Footer";
+  height: 100vh;
+  text-align: center;
+}

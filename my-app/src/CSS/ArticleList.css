@@ -1,0 +1,14 @@
+.ArticleList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ArtListItem {
+  list-style-type: none;
+  padding: 0;
+  border: solid grey 1px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 10px;
+  /* overflow: scroll; */
+}

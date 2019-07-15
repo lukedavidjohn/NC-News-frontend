@@ -1,0 +1,4 @@
+.Footer {
+  grid-area: Footer;
+  border: solid pink 2px;
+}
