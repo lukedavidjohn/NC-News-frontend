@@ -5,11 +5,30 @@ import "../CSS/Main.css";
 import "../CSS/ArticleList.css";
 
 class Homepage extends Component {
+  state = {
+    // showFilterBar: false,
+    sort_by: ""
+  };
   render() {
-    const { articles } = this.props;
+    const { articles, topic } = this.props;
     return (
       <div className="ArticleList">
-        {/* <FilterBar /> */}
+        <label>Sort by</label>
+        {/* {this.state.showFilterBar === false ? (
+          <div />
+        ) : ( */}
+        <div>
+          <button value="created_at" onClick={this.sort}>
+            Date
+          </button>
+          <button value="comment_count" onClick={this.sort}>
+            Comments
+          </button>
+          <button value="votes" onClick={this.sort}>
+            Votes
+          </button>
+        </div>
+        {/* )} */}
         <ul>
           {articles.map(article => {
             return (
@@ -25,6 +44,20 @@ class Homepage extends Component {
         </ul>
       </div>
     );
+  }
+  // showFilterBar = () => {
+  //   if (this.state.showFilterBar === false) {
+  //     this.setState({ showFilterBar: true });
+  //   } else this.setState({ showFilterBar: false });
+  // };
+  sort = event => {
+    this.setState({ sort_by: event.target.value });
+    this.props.setSortBy(this.state.sort_by);
+    // this.setState({ showFilterBar: false });
+  };
+
+  componentDidMount() {
+    this.props.setTopic(this.props.topic);
   }
 }
 

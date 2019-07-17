@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
+// import FilterBar from "./FilterBar";
 import "../CSS/ArticleList.css";
 import "../CSS/Link.css";
 
@@ -12,7 +13,7 @@ class Topic extends Component {
     const { articles, topic } = this.props;
     return (
       <div className="ArticleList">
-        <button>Sort by</button>
+        <label>Sort by</label>
         {/* {this.state.showFilterBar === false ? (
           <div />
         ) : ( */}

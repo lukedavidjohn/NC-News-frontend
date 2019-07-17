@@ -5,11 +5,11 @@ import "./CSS/App.css";
 import * as api from "./utils/apiCalls";
 
 import Article from "./components/Article";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Heading from "./components/Heading";
 import Homepage from "./components/Homepage";
 import Nav from "./components/Nav";
-import Post from "./components/Post";
+// import Post from "./components/Post";
 import Topic from "./components/Topic";
 import Topics from "./components/Topics";
 
@@ -21,14 +21,18 @@ class App extends Component {
     sort_by: "created_at"
   };
   render() {
-    console.log(this.state.sort_by);
     const { topics, articles, isLoading } = this.state;
     return (
       <div className="App">
         <Heading />
         <Nav topics={topics} setTopic={this.setTopic} />
         <Router className="Main">
-          <Homepage path="/" articles={articles} />
+          <Homepage
+            path="/"
+            articles={articles}
+            setSortBy={this.setSortBy}
+            setTopic={this.setTopic}
+          />
           <Topic
             path="/:topic"
             articles={articles}
@@ -41,8 +45,8 @@ class App extends Component {
           {/* <PostArticle path='/newarticle' /> */}
           {/* <Error path="/error" /> */}
         </Router>
-        <Post />
-        <Footer />
+        {/* <Post /> */}
+        {/* <Footer /> */}
       </div>
     );
   }
@@ -50,6 +54,7 @@ class App extends Component {
   setTopic = topic => {
     this.setState({ topic });
   };
+
   setSortBy = sort_by => {
     this.setState({ sort_by });
   };

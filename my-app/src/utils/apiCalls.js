@@ -34,3 +34,10 @@ export const fetchCommentsByArticleId = async article_id => {
   );
   return data;
 };
+
+export const postCommentByArticleId = async (article_id, username, body) => {
+  return await axios.post(`${BASE_URL}/articles/${article_id}/comments`, {
+    username,
+    body
+  });
+};
