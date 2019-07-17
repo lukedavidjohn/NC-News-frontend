@@ -1,7 +1,7 @@
 import React from "react";
 
 const ArticleCard = props => {
-  const { article, togglePostForm } = props;
+  const { article } = props;
   return (
     <div className="ArticleList">
       <h3>{article.title}</h3>
@@ -10,9 +10,6 @@ const ArticleCard = props => {
       <p>Topic: {article.topic}</p>
       <p>{article.body}</p>
       <p>{article.votes} votes</p>
-      <button onClick={togglePostForm} className="ArtListItem">
-        Leave a comment
-      </button>
     </div>
   );
 };

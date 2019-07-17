@@ -27,11 +27,7 @@ class Article extends Component {
     } = this.state;
     return (
       <div>
-        {isLoading === true ? (
-          "loading"
-        ) : (
-          <ArticleCard article={article} togglePostForm={this.togglePostForm} />
-        )}
+        {isLoading === true ? "loading" : <ArticleCard article={article} />}
         {isLoading === true ? (
           "loading"
         ) : (
@@ -42,6 +38,7 @@ class Article extends Component {
             optimisticBody={optimisticBody}
             showPostForm={showPostForm}
             user={user}
+            togglePostForm={this.togglePostForm}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleClick={this.handleClick}
@@ -87,6 +84,12 @@ class Article extends Component {
   };
   handleClick = event => {
     api.deleteCommentByCommentId(event.target.value);
+    this.setState({
+      comments: this.state.comments.filter(ele => {
+        return ele.comment_id !== Number(event.target.value);
+      }),
+      commentChange: -1
+    });
   };
 }
 
