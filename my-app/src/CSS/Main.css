@@ -1,0 +1,5 @@
+.Main {
+  grid-area: Main;
+  overflow: scroll;
+  background-color: #e6e6ea;
+}

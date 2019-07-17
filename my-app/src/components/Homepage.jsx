@@ -1,20 +1,24 @@
 import React, { Component } from "react";
-// import { Link } from "@reach/router";
-import "../CSS/Homepage.css";
+import { Link } from "@reach/router";
+// import FilterBar from "./FilterBar";
+import "../CSS/Main.css";
 import "../CSS/ArticleList.css";
 
 class Homepage extends Component {
   render() {
     const { articles } = this.props;
     return (
-      <div className="Homepage">
-        <li className="ArtListItem">Post a new article</li>
-        <ul className="ArticleList">
+      <div className="ArticleList">
+        {/* <FilterBar /> */}
+        <ul>
           {articles.map(article => {
             return (
               <li className="ArtListItem" key={article.article_id}>
-                <h2>{article.title}</h2>
-                <h3>{article.body.slice(0, 50)}</h3>
+                <Link to={`/articles/${article.article_id}`}>
+                  <h3>{article.title}</h3>
+                  <p>{article.comment_count} comments</p>
+                  <p>{article.votes} votes</p>
+                </Link>
               </li>
             );
           })}

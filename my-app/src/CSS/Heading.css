@@ -1,5 +1,7 @@
 .Heading {
   grid-area: Heading;
-  border: solid red 2px;
-  font-size: 40px;
+  margin: 0;
+  font-size: 60px;
+  color: white;
+  background-color: #fed766;
 }

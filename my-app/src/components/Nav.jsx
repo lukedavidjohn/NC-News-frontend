@@ -7,11 +7,22 @@ class Nav extends React.Component {
     const { topics } = this.props;
     return (
       <nav className="Nav">
-        <Link to="/">Home</Link>
-        <Link to="/topics">All topics</Link>
+        <Link className="Link" to="/">
+          home
+        </Link>
+        <Link className="Link" to="/topics">
+          all topics
+        </Link>
         {topics.slice(0, 4).map(topic => {
           return (
-            <Link to={`/${topic.slug}`} key={topic.slug}>
+            <Link
+              className="Link"
+              to={`/${topic.slug}`}
+              key={topic.slug}
+              onClick={() => {
+                this.props.setTopic(topic.slug);
+              }}
+            >
               {topic.slug}
             </Link>
           );

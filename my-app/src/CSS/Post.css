@@ -1,0 +1,10 @@
+.Post {
+  grid-area: Post;
+  background-color: #e6e6ea;
+  align-items: center;
+}
+
+.Post button {
+  background-color: white;
+  font-size: 2em;
+}

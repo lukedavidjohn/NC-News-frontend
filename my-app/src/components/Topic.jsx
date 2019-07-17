@@ -1,32 +1,62 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import "../CSS/ArticleList.css";
+import "../CSS/Link.css";
 
 class Topic extends Component {
+  state = {
+    // showFilterBar: false,
+    sort_by: ""
+  };
   render() {
     const { articles, topic } = this.props;
-    console.log(articles);
     return (
-      <div className="Homepage">
+      <div className="ArticleList">
+        <button>Sort by</button>
+        {/* {this.state.showFilterBar === false ? (
+          <div />
+        ) : ( */}
+        <div>
+          <button value="created_at" onClick={this.sort}>
+            Date
+          </button>
+          <button value="comment_count" onClick={this.sort}>
+            Comments
+          </button>
+          <button value="votes" onClick={this.sort}>
+            Votes
+          </button>
+        </div>
+        {/* )} */}
         <h1>{topic}</h1>
-        <ul className="ArticleList">
-          {articles
-            .filter(article => article.topic === topic)
-            .map(article => {
-              return (
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  className="ArtItemList"
-                  key={article.article_id}
-                >
-                  <h2>{article.title}</h2>
-                  <h3>{article.body.slice(0, 50)}</h3>
+        <ul>
+          {articles.map(article => {
+            return (
+              <li className="ArtListItem" key={article.article_id}>
+                <Link to={`/articles/${article.article_id}`}>
+                  <h3>{article.title}</h3>
+                  <p>{article.comment_count} comments</p>
+                  <p>{article.votes} votes</p>
                 </Link>
-              );
-            })}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
+  }
+  // showFilterBar = () => {
+  //   if (this.state.showFilterBar === false) {
+  //     this.setState({ showFilterBar: true });
+  //   } else this.setState({ showFilterBar: false });
+  // };
+  sort = event => {
+    this.setState({ sort_by: event.target.value });
+    this.props.setSortBy(this.state.sort_by);
+    // this.setState({ showFilterBar: false });
+  };
+  componentDidMount() {
+    this.props.setTopic(this.props.topic);
   }
 }
 

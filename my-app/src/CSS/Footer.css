@@ -1,4 +1,6 @@
 .Footer {
   grid-area: Footer;
-  border: solid pink 2px;
+  margin: 0;
+  background-color: #2ab7ca;
+  align-items: center;
 }

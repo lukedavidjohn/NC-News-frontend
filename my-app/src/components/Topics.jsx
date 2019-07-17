@@ -5,18 +5,20 @@ class Topics extends Component {
   render() {
     const { topics } = this.props;
     return (
-      <div>
-        <li className="ArtListItem">Post a new topic</li>
-        <ul className="ArticleList">
+      <div className="ArticleList">
+        <ul>
           {topics.map(topic => {
             return (
-              <Link
-                className="ArtListItem"
-                to={`/${topic.slug}`}
-                key={topic.slug}
-              >
-                {topic.slug}
-              </Link>
+              <li className="ArtListItem" key={topic.slug}>
+                <Link
+                  to={`/${topic.slug}`}
+                  onClick={() => {
+                    this.props.setTopic(topic.slug);
+                  }}
+                >
+                  <h2>{topic.slug}</h2>
+                </Link>
+              </li>
             );
           })}
         </ul>

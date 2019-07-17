@@ -1,5 +1,13 @@
 .Nav {
   grid-area: Nav;
-  border: solid blue 2px;
+  display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  background-color: #2ab7ca;
+}
+
+.Link {
+  text-decoration: none;
+  color: white;
+  font-size: 1em;
 }

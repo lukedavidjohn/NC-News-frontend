@@ -1,14 +1,39 @@
-.ArticleList {
-  list-style-type: none;
+.ArticleList ul {
   padding: 0;
 }
 
+.ArticleList a {
+  text-decoration: none;
+  color: black;
+}
+
+.ArticleList a:hover {
+  cursor: pointer;
+}
+
 .ArtListItem {
-  list-style-type: none;
-  padding: 0;
-  border: solid grey 1px;
   margin: 10px;
   border-radius: 5px;
-  font-size: 10px;
-  /* overflow: scroll; */
+  font-size: 15px;
+  background-color: lightgrey;
+  /* display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "title votes comments"
+    "body votes comments"; */
+}
+
+.ArtListItem h3 {
+  text-align: right;
+  grid-area: title;
+}
+
+.ArtListItem p {
+  /* display: flex; */
+  /* float: left; */
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  grid-area: body;
 }
