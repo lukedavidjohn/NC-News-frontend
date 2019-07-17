@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../CSS/ArticleList.css";
 import * as api from "../utils/apiCalls";
+import ArticleCard from "./ArticleCard";
+import CommentsList from "./CommentsList";
 
 class Article extends Component {
   state = {
@@ -8,59 +10,57 @@ class Article extends Component {
     comments: [],
     showPostForm: false,
     user: "jessjelly",
-    commentBody: ""
+    commentBody: "",
+    optimisticBody: null,
+    commentChange: 0,
+    isLoading: true
   };
   render() {
-    const { article, comments, showPostForm, user } = this.state;
+    const {
+      article,
+      comments,
+      showPostForm,
+      user,
+      optimisticBody,
+      commentChange,
+      isLoading
+    } = this.state;
     return (
-      <div className="ArticleList">
-        <h3>{article.title}</h3>
-        <p>Author: {article.author}</p>
-        <p>{article.created_at}</p>
-        <p>Topic: {article.topic}</p>
-        <p>{article.body}</p>
-        <p>{article.votes} votes</p>
-        <button onClick={this.togglePostForm} className="ArtListItem">
-          Shit your unwelcome opinions into the world
-        </button>
-        {showPostForm === false ? (
-          <div />
+      <div>
+        {isLoading === true ? (
+          "loading"
         ) : (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Go on then, {user}, give us your opinion:
-              <input
-                type="text"
-                name="commentBody"
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
+          <ArticleCard article={article} togglePostForm={this.togglePostForm} />
         )}
-        <p>{article.comment_count} comments:</p>
-        <ul>
-          {comments.map(comment => {
-            return (
-              <li className="ArtListItem" key={comment.comment_id}>
-                <h3>{comment.author}</h3>
-                <p>{comment.created_at}</p>
-                <p>{comment.body}</p>
-                <p>{comment.votes} votes</p>
-              </li>
-            );
-          })}
-        </ul>
+        {isLoading === true ? (
+          "loading"
+        ) : (
+          <CommentsList
+            article={article}
+            commentChange={commentChange}
+            comments={comments}
+            optimisticBody={optimisticBody}
+            showPostForm={showPostForm}
+            user={user}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            handleClick={this.handleClick}
+          />
+        )}
       </div>
     );
   }
   componentDidMount() {
     const { article_id } = this.props;
-    api.fetchArticleByArticleId(article_id).then(articles => {
-      this.setState({ article: articles.article });
-    });
-    api.fetchCommentsByArticleId(article_id).then(comments => {
-      this.setState({ comments: comments.comments });
+    Promise.all([
+      api.fetchArticleByArticleId(article_id),
+      api.fetchCommentsByArticleId(article_id)
+    ]).then(([articles, comments]) => {
+      this.setState({
+        article: articles.article,
+        comments: comments.comments,
+        isLoading: false
+      });
     });
   }
   togglePostForm = () => {
@@ -73,7 +73,6 @@ class Article extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
     api
       .postCommentByArticleId(
         this.props.article_id,
@@ -81,8 +80,13 @@ class Article extends Component {
         this.state.commentBody
       )
       .then(comment => {
-        console.log(comment);
+        this.setState({ optimisticBody: comment.data.comment });
+        this.setState({ commentChange: 1 });
+        this.setState({ showPostForm: false });
       });
+  };
+  handleClick = event => {
+    api.deleteCommentByCommentId(event.target.value);
   };
 }
 
