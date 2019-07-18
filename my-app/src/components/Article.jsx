@@ -16,8 +16,8 @@ class Article extends Component {
           "loading"
         ) : (
           <div>
-            <ArticleCard article={article} formatDate={this.formatDate} />
-            <CommentsList article={article} formatDate={this.formatDate} />
+            <ArticleCard article={article} />
+            <CommentsList article={article} />
           </div>
         )}
       </div>
@@ -32,29 +32,6 @@ class Article extends Component {
       });
     });
   }
-  formatDate = date => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    return (
-      new Date(date).getDate() +
-      " " +
-      months[Number(new Date(date).getMonth())] +
-      " " +
-      new Date(date).getFullYear()
-    );
-  };
 }
 
 export default Article;

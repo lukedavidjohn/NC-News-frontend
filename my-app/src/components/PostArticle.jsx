@@ -10,7 +10,7 @@
 // })
 // .catch((err) => {
 // navigate('/error', {
-// code: err.status, message: "shit out of luck, mate"
+// code: err.status, message: "nope"
 //   })
 // })
 // })

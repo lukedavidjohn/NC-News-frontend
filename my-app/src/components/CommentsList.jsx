@@ -1,6 +1,7 @@
 import React from "react";
 import "../CSS/ArticleList.css";
 import * as api from "../utils/apiCalls";
+import * as func from "../utils/functions";
 import Likes from "./Likes";
 
 class CommentsList extends React.Component {
@@ -14,7 +15,7 @@ class CommentsList extends React.Component {
     user: "jessjelly"
   };
   render() {
-    const { article, formatDate } = this.props;
+    const { article } = this.props;
     const {
       commentChange,
       comments,
@@ -56,7 +57,7 @@ class CommentsList extends React.Component {
               {optimisticBody === null ? null : (
                 <li className="ArtListItem">
                   <h3>{optimisticBody.author}</h3>
-                  <p>{formatDate(optimisticBody.created_at)}</p>
+                  <p>{func.formatDate(optimisticBody.created_at)}</p>
                   <p>{optimisticBody.body}</p>
                   <p>{optimisticBody.votes}</p>
                 </li>
@@ -66,7 +67,7 @@ class CommentsList extends React.Component {
                 return (
                   <li className="ArtListItem" key={comment.comment_id}>
                     <h3>{comment.author}</h3>
-                    <p>{formatDate(comment.created_at)}</p>
+                    <p>{func.formatDate(comment.created_at)}</p>
                     <p>{comment.body}</p>
                     <Likes item={comment} />
                     {/* Delete comment button */}
