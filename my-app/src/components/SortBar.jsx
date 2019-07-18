@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../CSS/ArticleList.css";
 
 class SortBar extends Component {
   state = {
@@ -11,7 +12,11 @@ class SortBar extends Component {
     const { showOrder, showSortBy } = this.state;
     return (
       <div>
-        <button value="showSortBy" onClick={this.handleClick}>
+        <button
+          className="ArtListItem"
+          value="showSortBy"
+          onClick={this.handleClick}
+        >
           Sort by
         </button>
         {showSortBy === false ? null : (
@@ -27,7 +32,11 @@ class SortBar extends Component {
             </button>
           </div>
         )}
-        <button value="showOrder" onClick={this.handleClick}>
+        <button
+          className="ArtListItem"
+          value="showOrder"
+          onClick={this.handleClick}
+        >
           Sort order
         </button>
         {showOrder === false ? null : (
@@ -57,14 +66,16 @@ class SortBar extends Component {
 
   order = event => {
     this.setState({ sort_order: event.target.value });
+    this.setState({ showOrder: false });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.sort_by !== this.state.sort_by) {
-      this.props.setSortBy(this.state.sort_by);
+    const { sort_by, sort_order } = this.state;
+    if (prevState.sort_by !== sort_by) {
+      this.props.setSortBy(sort_by);
     }
-    if (prevState.sort_order !== this.state.sort_order) {
-      this.props.setOrder(this.state.sort_order);
+    if (prevState.sort_order !== sort_order) {
+      this.props.setOrder(sort_order);
     }
   };
 }

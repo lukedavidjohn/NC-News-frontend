@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
+import "../CSS/Link.css";
 
 class Topics extends Component {
   render() {
@@ -11,6 +12,7 @@ class Topics extends Component {
             return (
               <li className="ArtListItem" key={topic.slug}>
                 <Link
+                  className="Link"
                   to={`/${topic.slug}`}
                   onClick={() => {
                     this.props.setTopic(topic.slug);

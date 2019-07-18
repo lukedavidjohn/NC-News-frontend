@@ -64,3 +64,8 @@
   text-overflow: ellipsis;
   grid-area: body;
 }
+
+.Image {
+  height: 80%;
+  width: 80%;
+}

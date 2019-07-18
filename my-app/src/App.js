@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 
 import "./CSS/App.css";
+
 import * as api from "./utils/apiCalls";
+import * as func from "./utils/functions";
 
 import Article from "./components/Article";
-// import Footer from "./components/Footer";
 import Heading from "./components/Heading";
 import Homepage from "./components/Homepage";
 import Nav from "./components/Nav";
@@ -15,10 +16,11 @@ import Topics from "./components/Topics";
 class App extends Component {
   state = {
     articles: [],
+    isLoading: true,
     order: "DESC",
+    sort_by: "",
     topics: [],
-    topic: "",
-    sort_by: ""
+    topic: ""
   };
   render() {
     const { topics, articles, isLoading } = this.state;
@@ -30,6 +32,7 @@ class App extends Component {
           <Homepage
             path="/"
             articles={articles}
+            isLoading={isLoading}
             setOrder={this.setOrder}
             setSortBy={this.setSortBy}
             setTopic={this.setTopic}
@@ -47,8 +50,6 @@ class App extends Component {
           {/* <PostArticle path='/newarticle' /> */}
           {/* <Error path="/error" /> */}
         </Router>
-        {/* <Post /> */}
-        {/* <Footer /> */}
       </div>
     );
   }
@@ -68,22 +69,29 @@ class App extends Component {
   componentDidMount = async () => {
     const { topics } = await api.fetchTopics();
     const { articles } = await api.fetchArticles();
-    this.setState({ topics, articles });
+    this.setState({
+      topics: topics.sort(func.compareTopics),
+      articles,
+      isLoading: false
+    });
   };
 
   componentDidUpdate = async (prevProps, prevState) => {
     const { order, topic, sort_by } = this.state;
-    if (prevState.topic !== this.state.topic) {
+    if (prevState.topic !== topic) {
+      this.setState({ isLoading: true });
       const { articles } = await api.fetchArticles(topic, sort_by, order);
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     }
-    if (prevState.sort_by !== this.state.sort_by) {
+    if (prevState.sort_by !== sort_by) {
+      this.setState({ isLoading: true });
       const { articles } = await api.fetchArticles(topic, sort_by, order);
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     }
-    if (prevState.order !== this.state.order) {
+    if (prevState.order !== order) {
+      this.setState({ isLoading: true });
       const { articles } = await api.fetchArticles(topic, sort_by, order);
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     }
   };
 }

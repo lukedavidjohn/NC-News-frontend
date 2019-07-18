@@ -21,3 +21,15 @@ export const formatDate = date => {
     new Date(date).getFullYear()
   );
 };
+
+export const compareTopics = (a, b) => {
+  const slugA = a.slug;
+  const slugB = b.slug;
+  let comparison = 0;
+  if (slugA > slugB) {
+    comparison = 1;
+  } else if (slugA < slugB) {
+    comparison = -1;
+  }
+  return comparison;
+};

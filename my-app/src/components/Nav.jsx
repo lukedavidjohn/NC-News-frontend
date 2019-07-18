@@ -4,7 +4,6 @@ import "../CSS/Nav.css";
 
 class Nav extends React.Component {
   render() {
-    const { topics } = this.props;
     return (
       <nav className="Nav">
         <Link className="Link" to="/">
@@ -13,7 +12,7 @@ class Nav extends React.Component {
         <Link className="Link" to="/topics">
           all topics
         </Link>
-        {topics.slice(0, 4).map(topic => {
+        {this.props.topics.slice(0, 4).map(topic => {
           return (
             <Link
               className="Link"
