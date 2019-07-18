@@ -9,16 +9,16 @@ import Article from "./components/Article";
 import Heading from "./components/Heading";
 import Homepage from "./components/Homepage";
 import Nav from "./components/Nav";
-// import Post from "./components/Post";
 import Topic from "./components/Topic";
 import Topics from "./components/Topics";
 
 class App extends Component {
   state = {
     articles: [],
+    order: "DESC",
     topics: [],
     topic: "",
-    sort_by: "created_at"
+    sort_by: ""
   };
   render() {
     const { topics, articles, isLoading } = this.state;
@@ -30,6 +30,7 @@ class App extends Component {
           <Homepage
             path="/"
             articles={articles}
+            setOrder={this.setOrder}
             setSortBy={this.setSortBy}
             setTopic={this.setTopic}
           />
@@ -37,6 +38,7 @@ class App extends Component {
             path="/:topic"
             articles={articles}
             isLoading={isLoading}
+            setOrder={this.setOrder}
             setSortBy={this.setSortBy}
             setTopic={this.setTopic}
           />
@@ -59,6 +61,10 @@ class App extends Component {
     this.setState({ sort_by });
   };
 
+  setOrder = order => {
+    this.setState({ order });
+  };
+
   componentDidMount = async () => {
     const { topics } = await api.fetchTopics();
     const { articles } = await api.fetchArticles();
@@ -66,13 +72,17 @@ class App extends Component {
   };
 
   componentDidUpdate = async (prevProps, prevState) => {
-    const { topic, sort_by } = this.state;
+    const { order, topic, sort_by } = this.state;
     if (prevState.topic !== this.state.topic) {
-      const { articles } = await api.fetchArticles(topic, sort_by);
+      const { articles } = await api.fetchArticles(topic, sort_by, order);
       this.setState({ articles });
     }
     if (prevState.sort_by !== this.state.sort_by) {
-      const { articles } = await api.fetchArticles(topic, sort_by);
+      const { articles } = await api.fetchArticles(topic, sort_by, order);
+      this.setState({ articles });
+    }
+    if (prevState.order !== this.state.order) {
+      const { articles } = await api.fetchArticles(topic, sort_by, order);
       this.setState({ articles });
     }
   };

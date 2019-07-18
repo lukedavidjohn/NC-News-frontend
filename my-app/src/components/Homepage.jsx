@@ -9,11 +9,10 @@ class Homepage extends Component {
     sort_by: ""
   };
   render() {
-    const { articles, setSortBy } = this.props;
+    const { articles, setOrder, setSortBy } = this.props;
     return (
       <div className="ArticleList">
-        <label>Sort by</label>
-        <SortBar setSortBy={setSortBy} />
+        <SortBar setSortBy={setSortBy} setOrder={setOrder} />
         <ArticleList articles={articles} />
       </div>
     );

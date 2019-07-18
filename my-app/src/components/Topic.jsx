@@ -5,11 +5,10 @@ import ArticleList from "./ArticleList";
 
 class Topic extends Component {
   render() {
-    const { articles, setSortBy, topic } = this.props;
+    const { articles, setOrder, setSortBy, topic } = this.props;
     return (
       <div className="ArticleList">
-        <label>Sort by</label>
-        <SortBar setSortBy={setSortBy} />
+        <SortBar setSortBy={setSortBy} setOrder={setOrder} />
         <h1>{topic}</h1>
         <ArticleList articles={articles} />
       </div>
