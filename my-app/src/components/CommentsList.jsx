@@ -1,9 +1,10 @@
 import React from "react";
+import "../CSS/ArticleList.css";
 import * as api from "../utils/apiCalls";
+import Likes from "./Likes";
 
 class CommentsList extends React.Component {
   state = {
-    // isDisabled: ?
     commentBody: "",
     commentChange: 0,
     comments: [],
@@ -13,7 +14,7 @@ class CommentsList extends React.Component {
     user: "jessjelly"
   };
   render() {
-    const { article } = this.props;
+    const { article, formatDate } = this.props;
     const {
       commentChange,
       comments,
@@ -28,12 +29,12 @@ class CommentsList extends React.Component {
           "loading"
         ) : (
           <div className="ArticleList">
+            {/* Leave comment button */}
             <button onClick={this.togglePostForm} className="ArtListItem">
               Leave a comment
             </button>
-            {showPostForm === false ? (
-              <div />
-            ) : (
+            {showPostForm === false ? null : (
+              // Comment submission form
               <form onSubmit={this.handleSubmit}>
                 <label>
                   Tell us what you think, {user}:
@@ -46,32 +47,33 @@ class CommentsList extends React.Component {
                 <input type="submit" value="Submit" />
               </form>
             )}
+            {/* Comment count */}
             <p>
               {Number(article.comment_count) + Number(commentChange)} comments:
             </p>
+            {/* Optimistic rendering of posted comment */}
             <ul>
-              {optimisticBody === null ? (
-                <div />
-              ) : (
+              {optimisticBody === null ? null : (
                 <li className="ArtListItem">
                   <h3>{optimisticBody.author}</h3>
-                  <p>{optimisticBody.created_at}</p>
+                  <p>{formatDate(optimisticBody.created_at)}</p>
                   <p>{optimisticBody.body}</p>
                   <p>{optimisticBody.votes}</p>
                 </li>
               )}
+              {/* Comment list */}
               {comments.map(comment => {
                 return (
                   <li className="ArtListItem" key={comment.comment_id}>
                     <h3>{comment.author}</h3>
-                    <p>{comment.created_at}</p>
+                    <p>{formatDate(comment.created_at)}</p>
                     <p>{comment.body}</p>
-                    <p>{comment.votes} votes</p>
+                    <Likes item={comment} />
+                    {/* Delete comment button */}
                     {comment.author !== user ? null : (
                       <button
                         value={comment.comment_id}
                         onClick={this.handleClick}
-                        // disabled="false"
                       >
                         Delete comment
                       </button>

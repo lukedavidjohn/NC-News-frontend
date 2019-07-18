@@ -25,7 +25,7 @@ class Topic extends Component {
             Comments
           </button>
           <button value="votes" onClick={this.sort}>
-            Votes
+            Likes
           </button>
         </div>
         {/* )} */}
@@ -37,7 +37,7 @@ class Topic extends Component {
                 <Link to={`/articles/${article.article_id}`}>
                   <h3>{article.title}</h3>
                   <p>{article.comment_count} comments</p>
-                  <p>{article.votes} votes</p>
+                  <p>{article.votes} likes</p>
                 </Link>
               </li>
             );

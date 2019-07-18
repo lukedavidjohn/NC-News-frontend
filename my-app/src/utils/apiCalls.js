@@ -23,6 +23,12 @@ export const fetchArticleByArticleId = async article_id => {
   return data;
 };
 
+export const voteArticleByArticleId = async (article_id, value) => {
+  return await axios.patch(`${BASE_URL}/articles/${article_id}`, {
+    inc_votes: value
+  });
+};
+
 export const postArticle = async article => {
   const { data } = await axios.post(`${BASE_URL}/articles`, article);
   return data;
@@ -39,6 +45,12 @@ export const postCommentByArticleId = async (article_id, username, body) => {
   return await axios.post(`${BASE_URL}/articles/${article_id}/comments`, {
     username,
     body
+  });
+};
+
+export const voteCommentByCommentId = async (comment_id, value) => {
+  return await axios.patch(`${BASE_URL}/comments/${comment_id}`, {
+    inc_votes: value
   });
 };
 

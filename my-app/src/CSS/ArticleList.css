@@ -37,3 +37,30 @@
   text-overflow: ellipsis;
   grid-area: body;
 }
+
+.Comment {
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: whitesmoke;
+  /* display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "title votes comments"
+    "body votes comments"; */
+}
+
+.Comment h3 {
+  text-align: right;
+  grid-area: title;
+}
+
+.Comment p {
+  /* display: flex; */
+  /* float: left; */
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  grid-area: body;
+}

@@ -10,7 +10,7 @@ class Homepage extends Component {
     sort_by: ""
   };
   render() {
-    const { articles, topic } = this.props;
+    const { articles } = this.props;
     return (
       <div className="ArticleList">
         <label>Sort by</label>
@@ -25,7 +25,7 @@ class Homepage extends Component {
             Comments
           </button>
           <button value="votes" onClick={this.sort}>
-            Votes
+            Likes
           </button>
         </div>
         {/* )} */}
@@ -36,7 +36,7 @@ class Homepage extends Component {
                 <Link to={`/articles/${article.article_id}`}>
                   <h3>{article.title}</h3>
                   <p>{article.comment_count} comments</p>
-                  <p>{article.votes} votes</p>
+                  <p>{article.votes} likes</p>
                 </Link>
               </li>
             );
