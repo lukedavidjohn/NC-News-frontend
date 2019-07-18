@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
-// import FilterBar from "./FilterBar";
 import "../CSS/ArticleList.css";
-import "../CSS/Link.css";
 import SortBar from "./SortBar";
 import ArticleList from "./ArticleList";
 
@@ -18,11 +15,6 @@ class Topic extends Component {
       </div>
     );
   }
-  // showFilterBar = () => {
-  //   if (this.state.showFilterBar === false) {
-  //     this.setState({ showFilterBar: true });
-  //   } else this.setState({ showFilterBar: false });
-  // };
 
   componentDidMount() {
     this.props.setTopic(this.props.topic);
