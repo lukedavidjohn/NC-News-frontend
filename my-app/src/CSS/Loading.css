@@ -1,0 +1,11 @@
+.Loading {
+  grid-area: main;
+  background-color: rgb(237, 97, 78);
+  /* background-color: #e6e6ea; */
+  text-align: center;
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

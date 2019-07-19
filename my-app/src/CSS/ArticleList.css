@@ -1,5 +1,14 @@
+.ArticleList {
+  margin: 0;
+}
+
 .ArticleList ul {
+  display: flex;
+  flex-direction: row;
   padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
 }
 
 .ArticleList a {
@@ -16,16 +25,19 @@
   border-radius: 5px;
   font-size: 15px;
   background-color: lightgrey;
-  /* display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   grid-template-areas:
-    "title votes comments"
-    "body votes comments"; */
+    "title"
+    "body";
 }
 
 .ArtListItem h3 {
-  text-align: right;
+  text-align: center;
   grid-area: title;
 }
 

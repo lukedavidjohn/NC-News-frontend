@@ -1,72 +1,50 @@
 import React, { Component } from "react";
-import "../CSS/ArticleList.css";
+import "../CSS/SortBar.css";
+import Select from "react-select";
 
 class SortBar extends Component {
   state = {
     showOrder: false,
     showSortBy: false,
-    sort_by: "",
-    sort_order: ""
+    sort_by: null,
+    sort_order: null,
+    sortByButtons: [
+      { label: "date", value: "created_at" },
+      { label: "comments", value: "comment_count" },
+      { label: "likes", value: "votes" }
+    ],
+    sortOrderButtons: [
+      { label: "ascending", value: "ASC" },
+      { label: "descending", value: "DESC" }
+    ]
   };
   render() {
-    const { showOrder, showSortBy } = this.state;
+    const { sort_by, sortByButtons, sortOrderButtons } = this.state;
     return (
-      <div>
-        <button
-          className="ArtListItem"
-          value="showSortBy"
-          onClick={this.handleClick}
-        >
-          Sort by
-        </button>
-        {showSortBy === false ? null : (
-          <div>
-            <button value="created_at" onClick={this.sort}>
-              Date
-            </button>
-            <button value="comment_count" onClick={this.sort}>
-              Comments
-            </button>
-            <button value="votes" onClick={this.sort}>
-              Likes
-            </button>
-          </div>
-        )}
-        <button
-          className="ArtListItem"
-          value="showOrder"
-          onClick={this.handleClick}
-        >
-          Sort order
-        </button>
-        {showOrder === false ? null : (
-          <div>
-            <button value="ASC" onClick={this.order}>
-              Ascending
-            </button>
-            <button value="DESC" onClick={this.order}>
-              Descending
-            </button>
-          </div>
-        )}
+      <div className="SortBar">
+        <li>
+          <Select
+            value={sort_by}
+            onChange={this.handleChangeSortBy}
+            placeholder={"sort by"}
+            options={sortByButtons}
+          />
+          <Select
+            onChange={this.handleChangeOrder}
+            placeholder={"sort order"}
+            options={sortOrderButtons}
+          />
+        </li>
       </div>
     );
   }
 
-  handleClick = event => {
-    if (this.state[event.target.value] === false) {
-      this.setState({ [event.target.value]: true });
-    } else this.setState({ [event.target.value]: false });
+  handleChangeSortBy = ({ value }) => {
+    this.setState({ sort_by: value });
   };
 
-  sort = event => {
-    this.setState({ sort_by: event.target.value });
-    this.setState({ showSortBy: false });
-  };
-
-  order = event => {
-    this.setState({ sort_order: event.target.value });
-    this.setState({ showOrder: false });
+  handleChangeOrder = ({ value }) => {
+    this.setState({ sort_order: value });
   };
 
   componentDidUpdate = (prevProps, prevState) => {

@@ -3,7 +3,8 @@ import "../CSS/Main.css";
 import "../CSS/ArticleList.css";
 import ArticleList from "./ArticleList";
 import SortBar from "./SortBar";
-import loading from "../utils/loading.jpg";
+import Loading from "./Loading";
+import "../CSS/Loading.css";
 
 class Homepage extends Component {
   state = {
@@ -14,9 +15,10 @@ class Homepage extends Component {
     return (
       <div>
         {isLoading === true ? (
-          <div>
-            <p>Loading</p>
-            <img className="Image" src={loading} />
+          <div className="Loading">
+            <h1>
+              <Loading />
+            </h1>
           </div>
         ) : (
           <div className="ArticleList">

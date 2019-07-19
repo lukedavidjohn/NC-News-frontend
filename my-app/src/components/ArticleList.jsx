@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import * as func from "../utils/functions";
 import "../CSS/Link.css";
+import "../CSS/ArticleList.css";
 
 const ArticleList = props => {
   return (
