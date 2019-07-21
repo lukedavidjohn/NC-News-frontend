@@ -1,0 +1,9 @@
+.ArticleCard {
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: left;
+}
+
+.ArticleCard p {
+  color: rgb(117, 117, 117);
+}

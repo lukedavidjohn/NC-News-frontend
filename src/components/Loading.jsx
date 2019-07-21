@@ -1,6 +1,8 @@
 import React from "react";
 import ReactLoading from "react-loading";
 
+import "../CSS/Loading.css";
+
 const list = [
   {
     prop: "balls",
@@ -37,7 +39,9 @@ const list = [
 ];
 
 const Loading = ({ type, color }) => (
-  <ReactLoading type={list[4].prop} color={color} height={100} width={100} />
+  <div className="Loading">
+    <ReactLoading type={list[4].prop} color={color} height={100} width={100} />
+  </div>
 );
 
 export default Loading;

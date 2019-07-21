@@ -1,6 +1,17 @@
 .Main {
   grid-area: Main;
   overflow: scroll;
-  background-color: #e6e6ea;
-  /* background-color: rgb(237, 97, 78); */
+  background-color: white;
+  margin: 0px;
+
+  /* padding: 10px; */
 }
+
+/* .ListDiv {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: none;
+} */

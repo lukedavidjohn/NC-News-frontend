@@ -1,6 +1,7 @@
 import React from "react";
-import "../CSS/Heading.css";
 import { Link } from "@reach/router";
+
+import "../CSS/Heading.css";
 
 const Heading = () => {
   return (

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import "../CSS/SortBar.css";
 import Select from "react-select";
+
+import "../CSS/SortBar.css";
 
 class SortBar extends Component {
   state = {
-    showOrder: false,
-    showSortBy: false,
     sort_by: null,
     sort_order: null,
     sortByButtons: [
@@ -19,7 +18,7 @@ class SortBar extends Component {
     ]
   };
   render() {
-    const { sort_by, sortByButtons, sortOrderButtons } = this.state;
+    const { sort_by, sortByButtons, sort_order, sortOrderButtons } = this.state;
     return (
       <div className="SortBar">
         <li>
@@ -30,6 +29,7 @@ class SortBar extends Component {
             options={sortByButtons}
           />
           <Select
+            value={sort_order}
             onChange={this.handleChangeOrder}
             placeholder={"sort order"}
             options={sortOrderButtons}

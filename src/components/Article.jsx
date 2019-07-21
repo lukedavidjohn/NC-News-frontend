@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+
+import "../CSS/Main.css";
+
 import * as api from "../utils/apiCalls";
+
 import ArticleCard from "./ArticleCard";
-import CommentsList from "./CommentsList";
+import CommentsCard from "./CommentsCard";
+import Loading from "./Loading";
 
 class Article extends Component {
   state = {
@@ -11,13 +16,16 @@ class Article extends Component {
   render() {
     const { article, isLoading } = this.state;
     return (
-      <div>
+      <div className="Main">
         {isLoading === true ? (
-          "loading"
+          <Loading />
         ) : (
           <div>
             <ArticleCard article={article} />
-            <CommentsList article={article} />
+            <CommentsCard
+              article_id={article.article_id}
+              comment_count={article.comment_count}
+            />
           </div>
         )}
       </div>

@@ -1,16 +1,20 @@
 import React from "react";
-import Likes from "./Likes";
+
+import "../CSS/ArticleCard.css";
+
 import * as func from "../utils/functions";
+
+import Likes from "./Likes";
 
 const ArticleCard = props => {
   const { article } = props;
   return (
-    <div className="ArticleList">
+    <div className="ArticleCard">
       <h3>{article.title}</h3>
-      <p>Author: {article.author}</p>
+      <h4>{article.author}</h4>
       <p>{func.formatDate(article.created_at)}</p>
-      <p>Topic: {article.topic}</p>
       <p>{article.body}</p>
+      <h4>Topic: {article.topic}</h4>
       <Likes item={article} />
     </div>
   );
