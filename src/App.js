@@ -7,7 +7,7 @@ import * as api from "./utils/apiCalls";
 import * as func from "./utils/functions";
 
 import Article from "./components/Article";
-import Error from "./Error";
+import Error from "./components/Error";
 import Heading from "./components/Heading";
 import Nav from "./components/Nav";
 import PostArticle from "./components/PostArticle";
@@ -25,10 +25,10 @@ class App extends Component {
         <Nav topics={topics} />
         <Router className="Main">
           <TopicPage path="/" />
-          <TopicPage path="/:topic" />
+          <TopicPage path="topics/:topic" />
           <Article path="/articles/:article_id" />
           <PostArticle path="/post" topics={topics} />
-          <Error path="/Error" />
+          <Error default path="/Error" />
         </Router>
       </div>
     );

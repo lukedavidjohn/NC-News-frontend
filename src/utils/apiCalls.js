@@ -7,12 +7,13 @@ export const fetchTopics = async () => {
   return data;
 };
 
-export const fetchArticles = async (topic, sort_by, order) => {
+export const fetchArticles = async (topic, sort_by, order, p) => {
   const { data } = await axios.get(`${BASE_URL}/articles`, {
     params: {
       topic,
       sort_by,
-      order
+      order,
+      p
     }
   });
   return data;

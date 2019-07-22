@@ -10,7 +10,8 @@ import Likes from "./Likes";
 class CommentsList extends React.Component {
   state = {
     comments: null,
-    isLoading: true
+    isLoading: true,
+    isDeleted: false
   };
 
   render() {
@@ -22,7 +23,7 @@ class CommentsList extends React.Component {
           "loading"
         ) : (
           <ul>
-            {comment === null ? null : (
+            {this.state.isDeleted === true ? null : comment === null ? null : (
               <li className="ComListItem">
                 <h4>{comment.author}</h4>
                 <p>{func.formatDate(comment.created_at)}</p>
@@ -66,8 +67,9 @@ class CommentsList extends React.Component {
       comments: this.state.comments.filter(ele => {
         return ele.comment_id !== Number(event.target.value);
       }),
-      commentChange: -1
+      isDeleted: true
     });
+    this.props.setComment(null, 0);
   };
 
   componentDidMount() {

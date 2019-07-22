@@ -18,40 +18,36 @@ class Likes extends Component {
     const { dislikeDisabled, likeDisabled, voteChange } = this.state;
     return (
       <div className="ArticleList">
-        <input
+        <img
           alt="thumbs up"
-          type="image"
           src={ThumbsUp}
           className="Thumbs"
           disabled={likeDisabled}
-          onClick={this.handleLike}
-          value={1}
+          onClick={() => this.handleLike(1)}
         />
-        <input
+        <img
           alt="thumbs down"
-          type="image"
           src={ThumbsDown}
           className="Thumbs"
           disabled={dislikeDisabled}
-          onClick={this.handleLike}
-          value={-1}
+          onClick={() => this.handleLike(-1)}
         />
         <p>{votes + Number(voteChange)} likes</p>
       </div>
     );
   }
 
-  handleLike = event => {
-    const { value } = event.target;
-    console.log(event.target);
+  handleLike = value => {
     if (this.props.item.comment_id) {
       api.voteCommentByCommentId(this.props.item.comment_id, value);
     } else api.voteArticleByArticleId(this.props.item.article_id, value);
     this.setState({
-      voteChange: value,
-      likeDisabled: true,
-      dislikeDisabled: true
+      voteChange: value
     });
+    if (value === 1)
+      this.setState({ dislikeDisabled: false, likeDisabled: true });
+    else if (value === -1)
+      this.setState({ dislikeDisabled: true, likeDisabled: false });
   };
 }
 

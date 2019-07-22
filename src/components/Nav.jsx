@@ -13,7 +13,7 @@ class Nav extends Component {
               return (
                 <Link
                   className="Link"
-                  to={`/${topic.slug}`}
+                  to={`/topics/${topic.slug}`}
                   key={topic.slug}
                   onClick={() => {
                     this.setTopic(topic.slug);

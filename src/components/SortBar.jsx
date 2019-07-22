@@ -18,18 +18,16 @@ class SortBar extends Component {
     ]
   };
   render() {
-    const { sort_by, sortByButtons, order, sortOrderButtons } = this.state;
+    const { sortByButtons, sortOrderButtons } = this.state;
     return (
       <div className="SortBar">
         <li>
           <Select
-            value={sort_by}
             onChange={this.handleChangeSortBy}
             placeholder={"sort by"}
             options={sortByButtons}
           />
           <Select
-            value={order}
             onChange={this.handleChangeOrder}
             placeholder={"sort order"}
             options={sortOrderButtons}
@@ -40,9 +38,7 @@ class SortBar extends Component {
   }
 
   handleChangeSortBy = ({ value }) => {
-    console.log(this.state.sort_by);
     this.setState({ sort_by: value });
-    console.log(this.state.sort_by);
   };
 
   handleChangeOrder = ({ value }) => {

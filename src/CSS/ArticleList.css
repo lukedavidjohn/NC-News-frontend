@@ -19,6 +19,10 @@
   color: black;
 }
 
+.List #createPost {
+  color: white;
+}
+
 .List a:hover {
   cursor: pointer;
 }

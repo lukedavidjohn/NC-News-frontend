@@ -40,7 +40,7 @@ const list = [
 
 const Loading = ({ type, color }) => (
   <div className="Loading">
-    <ReactLoading type={list[4].prop} color={color} height={100} width={100} />
+    <ReactLoading type={list[7].prop} color={color} height={100} width={100} />
   </div>
 );
 

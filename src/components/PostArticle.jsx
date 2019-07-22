@@ -21,19 +21,18 @@ class PostArticle extends Component {
     topic: null
   };
   render() {
-    const { topic, topicSelects } = this.state;
+    const { topicSelects } = this.state;
     return (
       <div className="Main">
         <form className="ArticleForm" onSubmit={this.handleSubmit}>
-          <input onChange={this.handleTitleChange} placeholder="Title" />
           <li>
             <Select
-              value={topic}
               onChange={this.handleSelect}
               placeholder={"topic"}
               options={topicSelects}
             />
           </li>
+          <input onChange={this.handleTitleChange} placeholder="Title" />
           <textarea
             onChange={this.handleBodyChange}
             name="articleBody"
@@ -59,19 +58,30 @@ class PostArticle extends Component {
   };
 
   handleSelect = ({ value }) => {
-    this.setState({ topic: value });
+    this.setState({ topic: value, label: value });
   };
 
   handleSubmit = event => {
     const { author, body, title, topic } = this.state;
     event.preventDefault();
-    api.postArticle(author, body, title, topic).then(({ article }) => {
-      navigate(`/articles/${article.article_id}`, {
-        state: {
-          postSuccessful: true
-        }
+    api
+      .postArticle(author, body, title, topic)
+      .then(({ article }) => {
+        navigate(`/articles/${article.article_id}`, {
+          state: {
+            postSuccessful: true
+          }
+        });
+      })
+      .catch(({ response }) => {
+        navigate("/Error", {
+          replace: true,
+          state: {
+            status: response.status,
+            message: response.data.msg
+          }
+        });
       });
-    });
   };
 }
 

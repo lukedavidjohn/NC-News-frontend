@@ -20,7 +20,7 @@ class CommentsCard extends React.Component {
     return (
       <div className="List">
         <button onClick={this.togglePostForm} className="Button">
-          Leave a comment
+          leave a comment
         </button>
         {showPostForm === false ? null : (
           <CommentForm
@@ -31,7 +31,12 @@ class CommentsCard extends React.Component {
           />
         )}
         <p>{Number(comment_count) + Number(commentChange)} comments:</p>
-        <CommentsList article_id={article_id} comment={comment} user={user} />
+        <CommentsList
+          article_id={article_id}
+          comment={comment}
+          user={user}
+          setComment={this.setComment}
+        />
       </div>
     );
   }
