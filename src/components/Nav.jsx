@@ -15,9 +15,6 @@ class Nav extends Component {
                   className="Link"
                   to={`/topics/${topic.slug}`}
                   key={topic.slug}
-                  onClick={() => {
-                    this.setTopic(topic.slug);
-                  }}
                 >
                   {topic.slug}
                 </Link>

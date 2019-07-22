@@ -14,7 +14,9 @@ import SortBar from "./SortBar";
 
 class TopicPage extends Component {
   state = {
+    article_count: null,
     articles: null,
+    isDisabled: false,
     isLoading: true,
     order: null,
     sort_by: null,
@@ -22,7 +24,7 @@ class TopicPage extends Component {
   };
   render() {
     const { order, path, sort_by, topic } = this.props;
-    const { articles, isLoading } = this.state;
+    const { articles, isDisabled, isLoading } = this.state;
     return (
       <div className="Main">
         {isLoading === true ? (
@@ -41,14 +43,25 @@ class TopicPage extends Component {
               sort_by={sort_by}
               topic={topic}
             />
-            <button className="Button" onClick={this.handleClick}>
-              get more articles
+            <button
+              disabled={isDisabled}
+              onClick={this.handleClick}
+              className="Button"
+            >
+              {isDisabled === false ? "get more articles" : "no more articles"}
             </button>
           </div>
         )}
       </div>
     );
   }
+
+  handleClick = () => {
+    console.log(Math.ceil(18 / 10));
+    if (this.state.p + 1 <= Math.ceil(this.state.article_count / 10)) {
+      this.setState({ p: this.state.p + 1 });
+    } else this.setState({ isDisabled: true });
+  };
 
   setOrder = order => {
     this.setState({ order });
@@ -86,8 +99,13 @@ class TopicPage extends Component {
   getArticles = async (topic, sort_by, order, p) => {
     await this.setState({ isLoading: true });
     try {
-      const { articles } = await api.fetchArticles(topic, sort_by, order, p);
-      await this.setState({ articles });
+      const { articles, article_count } = await api.fetchArticles(
+        topic,
+        sort_by,
+        order,
+        p
+      );
+      await this.setState({ article_count, articles });
       setTimeout(() => {
         this.setState({ isLoading: false });
       }, 500);
@@ -99,10 +117,6 @@ class TopicPage extends Component {
         }
       });
     }
-  };
-
-  handleClick = () => {
-    this.setState({ p: this.state.p + 1 });
   };
 
   // componentDidMount() {

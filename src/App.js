@@ -44,10 +44,6 @@ class App extends Component {
       topics: topics.sort(func.compareTopics)
     });
   };
-
-  setTopic = topic => {
-    this.setState({ topic });
-  };
 }
 
 export default App;
