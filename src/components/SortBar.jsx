@@ -6,7 +6,7 @@ import "../CSS/SortBar.css";
 class SortBar extends Component {
   state = {
     sort_by: null,
-    sort_order: null,
+    order: null,
     sortByButtons: [
       { label: "date", value: "created_at" },
       { label: "comments", value: "comment_count" },
@@ -18,7 +18,7 @@ class SortBar extends Component {
     ]
   };
   render() {
-    const { sort_by, sortByButtons, sort_order, sortOrderButtons } = this.state;
+    const { sort_by, sortByButtons, order, sortOrderButtons } = this.state;
     return (
       <div className="SortBar">
         <li>
@@ -29,7 +29,7 @@ class SortBar extends Component {
             options={sortByButtons}
           />
           <Select
-            value={sort_order}
+            value={order}
             onChange={this.handleChangeOrder}
             placeholder={"sort order"}
             options={sortOrderButtons}
@@ -40,20 +40,22 @@ class SortBar extends Component {
   }
 
   handleChangeSortBy = ({ value }) => {
+    console.log(this.state.sort_by);
     this.setState({ sort_by: value });
+    console.log(this.state.sort_by);
   };
 
   handleChangeOrder = ({ value }) => {
-    this.setState({ sort_order: value });
+    this.setState({ order: value });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { sort_by, sort_order } = this.state;
+    const { sort_by, order } = this.state;
     if (prevState.sort_by !== sort_by) {
       this.props.setSortBy(sort_by);
     }
-    if (prevState.sort_order !== sort_order) {
-      this.props.setOrder(sort_order);
+    if (prevState.order !== order) {
+      this.props.setOrder(order);
     }
   };
 }

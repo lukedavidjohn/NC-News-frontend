@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../CSS/CommentsList.css";
+
 import * as api from "../utils/apiCalls";
 import * as func from "../utils/functions";
 
@@ -15,13 +17,13 @@ class CommentsList extends React.Component {
     const { comment, user } = this.props;
     const { comments, isLoading } = this.state;
     return (
-      <div>
+      <div className="List">
         {isLoading === true ? (
           "loading"
         ) : (
           <ul>
             {comment === null ? null : (
-              <li className="ArtListItem">
+              <li className="ComListItem">
                 <h4>{comment.author}</h4>
                 <p>{func.formatDate(comment.created_at)}</p>
                 <p>{comment.body}</p>
@@ -29,14 +31,14 @@ class CommentsList extends React.Component {
                 <Likes item={comment} />
                 {comment.author !== user ? null : (
                   <button value={comment.comment_id} onClick={this.handleClick}>
-                    <h4>Delete comment</h4>
+                    Delete comment
                   </button>
                 )}
               </li>
             )}
             {comments.map(comment => {
               return (
-                <li className="ArtListItem" key={comment.comment_id}>
+                <li className="ComListItem" key={comment.comment_id}>
                   <h3>{comment.author}</h3>
                   <p>{func.formatDate(comment.created_at)}</p>
                   <p>{comment.body}</p>
@@ -46,7 +48,7 @@ class CommentsList extends React.Component {
                       value={comment.comment_id}
                       onClick={this.handleClick}
                     >
-                      <h3>Delete comment</h3>
+                      Delete comment
                     </button>
                   )}
                 </li>

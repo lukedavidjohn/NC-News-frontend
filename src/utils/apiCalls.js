@@ -29,8 +29,13 @@ export const voteArticleByArticleId = async (article_id, value) => {
   });
 };
 
-export const postArticle = async article => {
-  const { data } = await axios.post(`${BASE_URL}/articles`, article);
+export const postArticle = async (author, body, title, topic) => {
+  const { data } = await axios.post(`${BASE_URL}/articles`, {
+    author,
+    body,
+    title,
+    topic
+  });
   return data;
 };
 

@@ -31,7 +31,7 @@ class CommentsCard extends React.Component {
           />
         )}
         <p>{Number(comment_count) + Number(commentChange)} comments:</p>
-        <CommentsList comment={comment} article_id={article_id} user={user} />
+        <CommentsList article_id={article_id} comment={comment} user={user} />
       </div>
     );
   }

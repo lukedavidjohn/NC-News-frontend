@@ -1,0 +1,25 @@
+Article	Article>>ArticleCard		
+Article_Id	"Article>>CommentsCard>>CommentList
+Article>>CommentsCard>>CommentForm"		
+Articles	ArticleList		
+Comment	CommentsCard>>CommentList>>Likes		
+CommentBody	CommentForm		
+CommentChange	CommentsCard		
+CommentCount	Article>>CommentsCard		
+Comments	CommentList		
+disLikeDisabled	Likes		
+likeDisabled	Likes		
+Order	"TopicPage>>ArticleList
+TopicPage>>SortBar"		
+setComment	CommentsCard>>CommentForm		
+setOrder	TopicPage>>SortBar		
+setSortBy	TopicPage>>SortBar		
+ShowPostForm	CommentsCard		
+sort_by	"TopicPage>>ArticleList
+TopicPage>>SortBar"		
+togglePostForm	CommentsCard>>CommentForm		
+Topic	TopicPage>>ArticleList		
+Topics	Nav		
+User	"CommentsCard>>CommentForm
+CommentsCard>>CommentList"		
+voteChange	Likes		
