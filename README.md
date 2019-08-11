@@ -1,6 +1,6 @@
-# Project Title
+# NC News
 
-NC News - a Reddit-style news website built in React where readers can comment and vote on stories on given topics.
+A Reddit-style news website built in React where readers can comment and vote on stories on given topics.
 
 This project is hosted on [Netlify](https://quizzical-montalcini.netlify.com/). The back-end repository can be found [here](https://github.com/lukedavidjohn/NC-News-backend).
 
